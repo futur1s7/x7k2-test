@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>VODopad probe</title>
+  <script type="module" crossorigin src="./assets/index-CfilwR7p.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Czq19voO.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>VODopad · проверка mtcute</h1>
+      <p class="muted">Тестовая страница шага 0a. Ничего не отправляет на наши серверы: вход и видео идут напрямую в Telegram.</p>
+      <p id="status" class="status">Запуск…</p>
+    </header>
+
+    <section>
+      <h2>1. Окружение</h2>
+      <p class="muted">Проверяется само при открытии: Service Worker, MediaSource, кодеки, хранилище.</p>
+      <div id="env-summary" class="summary"></div>
+    </section>
+
+    <section>
+      <h2>2. Контроль без Telegram</h2>
+      <p class="muted">Тот же плеер, но маленький тестовый ролик берётся обычным HTTP с этой страницы. Показывает, работает ли сам WebView.</p>
+      <div class="row">
+        <button id="ctl-sw">Service Worker + ролик</button>
+        <button id="ctl-mse">MediaSource + ролик</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Вход в Telegram</h2>
+      <p class="muted">api_id и api_hash — с my.telegram.org → API development tools. Хранятся только на этом устройстве и в облаке Telegram этого бота.</p>
+      <div class="row">
+        <input id="api-id" inputmode="numeric" placeholder="api_id" autocomplete="off">
+        <input id="api-hash" placeholder="api_hash" autocomplete="off">
+      </div>
+      <div class="row">
+        <button id="save-api">Сохранить</button>
+        <button id="probe">Проверить связь</button>
+        <button id="login" class="primary">Войти</button>
+        <button id="logout" class="danger">Выйти и удалить сессию</button>
+      </div>
+      <div id="ask" class="ask" hidden>
+        <label id="ask-label" for="ask-input"></label>
+        <div class="row">
+          <input id="ask-input" autocomplete="off">
+          <button id="ask-ok" class="primary">Далее</button>
+        </div>
+        <p id="ask-info" class="muted"></p>
+      </div>
+      <p class="muted">Номер, код и пароль уходят прямо в Telegram и в отчёт не попадают.</p>
+    </section>
+
+    <section>
+      <h2>4. Видео из группы</h2>
+      <div class="row">
+        <input id="chat" value="vodop4d" placeholder="группа">
+        <button id="list">Найти видео в группе</button>
+      </div>
+      <div class="row">
+        <input id="link" placeholder="ссылка на пост, например https://t.me/vodop4d/12/345">
+        <button id="open-link">Открыть по ссылке</button>
+      </div>
+      <div id="videos" class="list"></div>
+      <p id="picked" class="picked">Видео не выбрано</p>
+    </section>
+
+    <section>
+      <h2>5. Тесты</h2>
+      <div class="row">
+        <button id="auto" class="primary">Всё подряд (≈3 мин)</button>
+      </div>
+      <div class="row">
+        <button id="raw">Скорость чтения</button>
+        <button id="play-sw">Играть через Service Worker</button>
+        <button id="play-mse">Играть через MediaSource</button>
+      </div>
+      <div class="row">
+        <button id="seek-mid">В середину</button>
+        <button id="seek-end">В конец</button>
+        <button id="stop">Стоп</button>
+      </div>
+      <video id="video" controls playsinline muted></video>
+      <p id="live" class="live"></p>
+    </section>
+
+    <section>
+      <h2>6. Отчёт</h2>
+      <div class="row">
+        <button id="copy" class="primary">Скопировать отчёт</button>
+        <button id="send">Отправить себе в «Избранное»</button>
+      </div>
+      <textarea id="report" readonly rows="16"></textarea>
+    </section>
+  </main>
+</body>
+</html>
